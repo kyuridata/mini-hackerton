@@ -1,0 +1,20 @@
+.top-name{
+    display: flex;
+    border-bottom: 1px solid rgba(221, 221, 221, 0.884);
+    justify-content: space-between;
+    align-items: center;
+    padding : 0px 20px 0px 20px;
+}
+
+.class-name {
+    font-size : 32px;
+}
+
+.type-select {
+    margin : 20px;
+}
+
+.post-items{
+    border: 1px solid rgba(221, 221, 221, 0.884);
+    align-items: center;
+}

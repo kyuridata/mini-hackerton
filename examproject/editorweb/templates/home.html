@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css_content %}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+{% endblock  %}
+{% block content %}
+
+<form action="{% url 'home' %}" id="search-form" method="get" style="display:flex; justify-content:center; align-items:center;">
+    <input placeholder="과목명 or 교수명" type="text" name="q" value="{{ q }}" class="search-p">
+    <i style="cursor:pointer;" onClick="javascript:{document.getElementById('search-form').submit()}" class="fas fa-search fa-2x"></i>
+</form>
+
+
+{% for p in person %}
+    <a href="{% url 'summary' p.id %}" method='get'>
+    <div class="person-items">
+        <div class="person-items-body">
+            <span class="person-subject">{{ p.subject }}({{ p.professor }}) </span>
+        </div>
+    </div>
+    </a>
+
+{% endfor %}
+{% endblock %}
+

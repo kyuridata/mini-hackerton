@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="post-detail-container">
+  <div class="post-read-header">
+    <h2 style="padding:20px 0px; border-bottom: 1px solid rgba(221, 221, 221, 0.884);">{{ post.title }}</h2>
+    <div>
+      <span>{{ post.pub_date }}</span>
+      <div class="post-read-action">
+        <form action="{% url 'delete' post.id %}" id="post-delete" method="post">
+          {% csrf_token %}
+        </form>
+        <a href="{% url 'renew' post.id %}">글 수정하기</a>
+        <button type="submit" form="post-delete">글 삭제하기</button>
+      </div>
+    </div>
+  </div>
+  <div class="post-read-body">
+    <p>{{ post.body }}</p>
+  </div>
+  <div class="post-read-end">
+    <span class="post-read-img">
+      {% if post.image %}
+      <img src="{{ post.image.url }}" alt="">
+      {% else %}
+      <img src="{% static 'no-image.png' %}" alt="">
+      {% endif %}
+    </span>
+  </div>
+</div> 
+{% endblock %}

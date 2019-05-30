@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css_content %}
+    <link rel="stylesheet" href="{% static 'summary.css' %}">
+{% endblock  %}
+
+{% block content %}
+<div class="top-name">
+    <p class="class-name">{{ person }}</p>
+    <a href="{% url 'new' person.id %}" class="write">글쓰기</a>
+</div>
+<form action="{% url 'summary' person.id %}" method="POST"> 
+    {% csrf_token %}
+    <div class = "type-select">
+        <input type="radio" name="post_exam" value="midterm" id="midterm">
+        <label for="midterm"> 중간고사</label>
+        <input type="radio" name="post_exam" value="finalterm" id="finalterm">
+        <label for="finalterm"> 기말고사</label>
+        <input type="radio" name="post_exam" value="quiz" id="quiz">
+        <label for="quiz"> 퀴즈</label>   
+    <input type="submit" value="검색">
+    </div>
+</form>
+
+
+{% for post in posts %}
+
+<a href="{% url 'read' post.id %}">
+    <div class="post-items">
+        <div class="post-items-body">
+            <span class="post-title">{{ post.title }}</span>
+            <span class="post-body">{{ post.body }}</span>
+
+            <span class="post-img">
+                {% if post.image %}
+                <img src="{{ post.image.url }}" alt="">
+                {% else %} 
+                <img src="{% static 'no-image.png' %}" alt="">
+                {% endif %}
+            </span>
+        </div>
+    </div>
+</a>
+<style>
+.post-items{
+    border: 1px solid rgba(221, 221, 221, 0.884);
+    padding: 20px;
+    margin: 10px;
+}
+</style>
+{% endfor %} 
+
+{% endblock %}

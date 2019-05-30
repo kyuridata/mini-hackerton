@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id=container>
+<form action="{% url 'create' person.id %}" id="post-form" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+   <input type="hidden" id="{{ person.id }}" name="person_id" value="{{ person.id }}">
+   <h1 style="padding: 20px 20px">{{ person }}</h1>
+    <table class="table table-striped"
+    style="text-align: center; border: 1px solid #dddddd;">
+        <thead>
+            <tr>
+                <th><input type="radio" name="post_exam" value="midterm" id="midterm">
+                <label for="midterm"> 중간고사</label></th>
+                <th><input type="radio" name="post_exam" value="finalterm" id="finalterm">
+                <label for="finalterm"> 기말고사</label></th>
+                <th><input type="radio" name="post_exam" value="quiz" id="quiz">
+                <label for="quiz"> 퀴즈</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="3"><input type="text" id="post" name="post_title" placeholder="글제목"></td>
+            </tr>
+            <tr>
+                <td colspan="3"><textarea id="post" name="post_body" cols="30" rows="10" placeholder="글내용"></textarea>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="input-container" style="justify-content: space-between; 
+    display: flex;">
+            <input type="file" name="post_image">
+            <input class="btn btn-outline-dark right" form="post-form" type="submit" value="글쓰기">
+    </div> 
+</form>
+</div>
+<style> 
+#post{
+    height:100%;
+    width:100%;
+}
+#container{
+    font-family: 'Noto Serif KR';
+}
+</style>
+{% endblock %}

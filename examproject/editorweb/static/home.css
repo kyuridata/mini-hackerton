@@ -1,0 +1,24 @@
+
+
+.person-items {
+    border-bottom: 1px solid lightgray;
+    padding : 10px;
+    padding-left : 20px;
+}
+
+#search-form {
+    margin : 30px;
+}
+
+.search-p {
+    width:800px; 
+    height:70px; 
+    margin : 20px;
+    padding : 20px;
+    font-size : 30px;
+}
+
+
+.person-subject:hover {
+    color: rgb(241, 194, 177);
+}
